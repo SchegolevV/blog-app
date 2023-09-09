@@ -1,0 +1,35 @@
+//fonts
+$font-family: 'Inter';
+$standard-fz: 1.125rem;
+$secondary-fz: 0.75rem;
+
+@mixin standardFont {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: $standard-fz;
+}
+
+
+//colors
+$bcg-color: #EBEEF3;
+$secondary-color: rgba(0, 0, 0, 0.50);
+$success-color: #52C41A ;
+$error-color: #F5222D;
+$ui-color: #1890FF;
+
+
+//cards
+@mixin box-borders {
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
+}
+
+
+//optional-assets 
+@mixin buttonAuth {
+    padding: 1rem;
+    color: black;
+    background-color: inherit;
+    border-radius: 0.3125rem;
+    border: 1px solid rgba($color: #000000, $alpha: 0);
+    transition: 0.02s ;
+}

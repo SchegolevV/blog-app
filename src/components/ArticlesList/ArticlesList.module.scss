@@ -1,0 +1,17 @@
+@import '../../assets/styles/variables.scss';
+.articles-list {
+    list-style: none;
+    display: flex; 
+    gap: 1.6rem;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.articles-list-item {
+    margin: 0 auto;
+    display: block;
+    width: 58.625rem;
+    height: min-content;
+    background-color: white;
+    @include box-borders;
+}

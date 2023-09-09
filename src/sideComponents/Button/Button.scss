@@ -1,0 +1,28 @@
+@import '../../assets/styles/variables.scss';
+
+// .button {
+//     width: 6.8125rem;
+//     height: 3.1875rem;
+// }
+
+.signIn, .signUp, .logOut {
+    @include buttonAuth;
+}
+.signIn:hover, .signIn:focus {
+    color: $ui-color;
+    border-color: $ui-color;
+}
+.signIn:focus {
+    outline: 2px solid rgba($color: $ui-color, $alpha: 0.7);
+}
+.signUp:focus {
+    outline: 2px solid rgba($color: $success-color, $alpha: 0.7);
+}
+
+.signUp {
+    color: $success-color;
+    border-color: $success-color;
+}
+.logOut {
+
+}

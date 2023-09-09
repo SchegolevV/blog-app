@@ -1,0 +1,19 @@
+@import '../../assets/styles/variables.scss';
+
+.tag-list {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.38rem;
+    width: 15rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    border-radius: 0.125rem;
+    border: 1px solid $secondary-color;
+    padding: 0.1rem 0.3rem;
+    width: fit-content;
+    text-align: center;
+    @include standardFont;
+    font-size: $secondary-fz;
+}

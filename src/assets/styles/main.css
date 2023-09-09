@@ -1,0 +1,21 @@
+@import './normalize.css';
+
+@font-face {
+  font-family: 'Inter';
+  src: url(../src/assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+html {
+  font-size: 16px;
+}
+body {
+  font-family: 'Inter';
+  background-color: white;
+}
+main {
+  background-color: #ebeef3;
+  padding: 1.6rem;
+}
+.content-wrapper {
+  margin: 0 auto;
+  max-width: 90rem;
+}
