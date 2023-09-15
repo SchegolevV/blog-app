@@ -1,4 +1,4 @@
-import { IArticle, IArticlesData } from './Types/types'
+import { IArticle, IArticlesData, IRequestedUser, IResponseUser, ILoginData } from './Types/types'
 
 export const getArticles = async (page: number = 1): Promise<IArticlesData | undefined> => {
   try {
@@ -19,6 +19,48 @@ export const getArticle = async (slug: string | undefined): Promise<IArticle | u
     )
 
     return response.article
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const registerNewUser = async (userData: IRequestedUser) => {
+  try {
+    const response = await fetch('https://blog.kata.academy/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+
+    if (response.status > 500) {
+      throw new Error(`Failed with ${response.status}: ${response.body}`)
+    }
+
+    const body: IResponseUser = await response.json()
+    return body
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const loginUser = async (userData: ILoginData) => {
+  try {
+    const response = await fetch('https://blog.kata.academy/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+
+    if (response.status > 500) {
+      throw new Error(`Failed with ${response.status}: ${response.body}`)
+    }
+
+    const body: IResponseUser = await response.json()
+    return body
   } catch (err) {
     console.error(err)
   }

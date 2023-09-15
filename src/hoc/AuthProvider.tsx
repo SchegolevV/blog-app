@@ -1,13 +1,12 @@
 import { FC, ReactNode, createContext, useState } from 'react'
 
+import { IResponseUser } from '../Types/types'
+
 interface AuthProviderProps {
   children: ReactNode
 }
 
-type TUser = {
-  status: boolean
-  key?: string
-}
+type TUser = IResponseUser['user']
 
 type TSignIn = (user: TUser, cb: () => void) => void
 
@@ -22,7 +21,9 @@ type valueType = {
 export const AuthContext = createContext<valueType | null>(null)
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<TUser | null>({ status: false })
+  const currentUser = localStorage.getItem('currentUser') || JSON.stringify('')
+
+  const [user, setUser] = useState<TUser | null>(JSON.parse(currentUser))
 
   const signIn: TSignIn = (user, cb) => {
     setUser(user)

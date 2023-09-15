@@ -10,9 +10,12 @@ html {
 body {
   font-family: 'Inter';
   background-color: white;
+  box-sizing: border-box;
 }
 main {
   background-color: #ebeef3;
+  min-height: 90vh;
+  content-visibility: auto;
   padding: 1.6rem;
 }
 .content-wrapper {

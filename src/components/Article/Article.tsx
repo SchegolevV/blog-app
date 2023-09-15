@@ -32,7 +32,7 @@ const Article: FC<ArticleProps> = ({ ...props }) => {
             className={classes['like-btn']}
             isLiked={favorited}
             currentLikes={favoritesCount}
-            disabled={user?.status}
+            disabled={!user}
           />
           <Tags tagList={tagList} />
         </div>

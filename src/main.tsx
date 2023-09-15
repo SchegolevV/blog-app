@@ -8,7 +8,9 @@ import HomePage from './components/HomePage/HomePage'
 import GlobalError from './components/Errors/GlobalError'
 import ArticlesList from './components/ArticlesList/ArticlesList'
 import Article from './components/Article/Article'
+import SignUpForm from './components/Forms/SignUpForm'
 import './assets/styles/main.css'
+import SignInForm from './components/Forms/SignInForm'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <ArticlesList />,
+      },
+      {
+        path: 'sign-in',
+        element: <SignInForm />,
+      },
+      {
+        path: 'sign-up',
+        element: <SignUpForm />,
       },
       {
         path: 'articles',
