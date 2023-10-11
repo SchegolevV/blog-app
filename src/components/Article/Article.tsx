@@ -3,7 +3,7 @@ import { Link, useLoaderData, useParams } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/useAuth'
 import LikeButton from '../../sideComponents/Like/Like'
-import { IArticle } from '../../Types/types'
+import { IArticle } from '../../Types/formTypes'
 import Tags from '../../sideComponents/Tags/Tags'
 import formatDate from '../../helpers/formatDate'
 
@@ -30,7 +30,8 @@ const Article: FC<ArticleProps> = ({ ...props }) => {
           </Link>
           <LikeButton
             className={classes['like-btn']}
-            isLiked={favorited}
+            slug={slug}
+            favorited={favorited}
             currentLikes={favoritesCount}
             disabled={!user}
           />

@@ -1,19 +1,14 @@
-import { FC, useState, useEffect } from 'react'
+import { FC } from 'react'
 import { Pagination } from 'antd'
 
-import { IArticle, IArticlesData } from '../../Types/types'
+import { IArticle } from '../../Types/formTypes'
 import Article from '../Article/Article'
-import { getArticles } from '../../API'
+import useArticles from '../../hooks/useArticles'
 
 import classes from './ArticlesList.module.scss'
 
 const ArticlesList: FC = () => {
-  const [articles, setArticles] = useState<IArticlesData>()
-  const [page, setPage] = useState<number>(1)
-
-  useEffect(() => {
-    getArticles(page).then((body) => setArticles(body))
-  }, [page])
+  const { articles, page, setPage } = useArticles()
 
   const createArticles = () => {
     const list = articles?.articles.map((article: IArticle) => (
@@ -28,11 +23,13 @@ const ArticlesList: FC = () => {
     <>
       <ul className={classes['articles-list']}>{createArticles()}</ul>
       <Pagination
-        defaultCurrent={1}
+        defaultCurrent={page}
         total={articles?.articlesCount}
         showSizeChanger={false}
         style={{ width: 'fit-content', margin: '1.6rem auto' }}
-        onChange={(e) => setPage(e)}
+        onChange={(e) => {
+          setPage(e)
+        }}
       />
     </>
   )

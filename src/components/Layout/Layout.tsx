@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import Header from '../Header/Header'
 
-const HomePage: FC = () => {
+const Layout: FC = () => {
   return (
     <>
       <div className="content-wrapper">
@@ -18,4 +18,4 @@ const HomePage: FC = () => {
   )
 }
 
-export default HomePage
+export default Layout

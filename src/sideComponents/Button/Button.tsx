@@ -1,17 +1,20 @@
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 import './Button.scss'
 
 interface ButtonProps {
-  type: 'signIn' | 'signUp' | 'logOut'
+  className: 'signIn' | 'signUp' | 'logOut' | 'createArticle'
   onClick?: () => void
+  children: string
+  linkTo: string
+  replace?: boolean
 }
 
-const Button: FC<ButtonProps> = ({ type, onClick }) => {
-  const name = type === 'signIn' ? 'Sign In' : type === 'signUp' ? 'Sign Up' : 'Log Out'
+const Button: FC<ButtonProps> = ({ className, onClick, children, linkTo, replace }) => {
   return (
-    <button className={type} onClick={onClick}>
-      {name}
-    </button>
+    <Link to={`${linkTo}`} replace={replace} className={`button ${className}`} onClick={onClick}>
+      {children}
+    </Link>
   )
 }
 

@@ -1,7 +1,7 @@
-import { registerNewUser } from '../API'
-import { ISignUp, IRequestedUser } from '../Types/types'
+import { registerNewUser } from '../API/API'
+import { IFormNames, IRequestedUser } from '../Types/formTypes'
 
-export const registerUser = async (data: ISignUp) => {
+export const registerUser = async (data: IFormNames) => {
   const { username, email, password } = data
   const requestParams: IRequestedUser = {
     user: {

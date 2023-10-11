@@ -1,31 +1,31 @@
 import { FC } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Form, useNavigate } from 'react-router-dom'
 
-import { ISignUp } from '../../Types/types'
+import { IFormNames } from '../../Types/formTypes'
 import { regEmailOptions, regPasswordOptions } from '../../assets/variables'
 import { useAuth } from '../../hooks/useAuth'
 import { logInUser } from '../../helpers/logInUser'
+import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
 
-import FormInput from './FormInput'
 import classes from './forms.module.scss'
 
 const SignInForm: FC = () => {
   const navigate = useNavigate()
   const { signIn } = useAuth()
-  const { handleSubmit, register, formState, setError } = useForm<ISignUp>()
+  const { handleSubmit, register, formState, setError } = useForm<IFormNames>()
 
-  const onSubmit: SubmitHandler<ISignUp> = async (data) => {
+  const onSubmit: SubmitHandler<IFormNames> = async (data) => {
     const response = await logInUser(data)
     if (response?.errors) {
       setError('email', { message: `Email or password is invalid` })
     } else if (response && signIn) {
-      window.localStorage.setItem('currentUser', JSON.stringify(response.user))
-      signIn(response.user, () => navigate('../articles'))
+      localStorage.setItem('currentUser', JSON.stringify(response.user))
+      signIn(response.user, () => navigate('../articles', { replace: true }))
     }
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+    <Form onSubmit={handleSubmit(onSubmit)} className={classes.form} method="post">
       <h2 className={classes.title}>Sign-In</h2>
       <FormInput name="email" formState={formState} register={register} registerOptions={regEmailOptions}>
         Email
@@ -48,7 +48,7 @@ const SignInForm: FC = () => {
           Sign Up.
         </Link>
       </span>
-    </form>
+    </Form>
   )
 }
 

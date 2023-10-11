@@ -1,7 +1,14 @@
-import { loginUser } from '../API'
-import { ILoginData, ISignUp } from '../Types/types'
+import { loginUser } from '../API/API'
+import { IFormNames } from '../Types/formTypes'
 
-export const logInUser = async (data: ISignUp) => {
+export interface ILoginData {
+  user: {
+    email: string
+    password: string
+  }
+}
+
+export const logInUser = async (data: IFormNames) => {
   const { email, password } = data
   const requestParams: ILoginData = {
     user: {

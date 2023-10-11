@@ -1,6 +1,6 @@
 import { FC, ReactNode, createContext, useState } from 'react'
 
-import { IResponseUser } from '../Types/types'
+import { IResponseUser } from '../Types/formTypes'
 
 interface AuthProviderProps {
   children: ReactNode
@@ -8,9 +8,9 @@ interface AuthProviderProps {
 
 type TUser = IResponseUser['user']
 
-type TSignIn = (user: TUser, cb: () => void) => void
+type TSignIn = (user: TUser, cb?: () => void) => void
 
-type TSignOut = (cb: () => void) => void
+type TSignOut = (cb?: () => void) => void
 
 type valueType = {
   user: TUser | null
@@ -27,11 +27,11 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
   const signIn: TSignIn = (user, cb) => {
     setUser(user)
-    cb()
+    cb ? cb() : null
   }
   const signOut: TSignOut = (cb) => {
     setUser(null)
-    cb()
+    cb ? cb() : null
   }
 
   const value = { user, signIn, signOut }

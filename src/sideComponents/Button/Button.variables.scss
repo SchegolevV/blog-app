@@ -1,0 +1,32 @@
+
+
+$success-color: #52C41A ;
+$error-color: #F5222D;
+$ui-color: #1890FF;
+
+@mixin buttonAuth {
+    text-decoration: none;
+    padding: 12px 20px;
+    background-color: inherit;
+    border: 1px solid;
+    border-radius: 5px;
+    transition: 0.08s ease-out;
+}
+
+@mixin signUp {
+    color: $success-color;
+    border-color: $success-color;
+}
+@mixin signIn {
+    color: $ui-color;
+    border-color: $ui-color;
+}
+@mixin logOut {
+    color: black;
+    border-color: black;
+}
+@mixin createArticle {
+    color: $success-color;
+    border-color: $success-color;
+    padding: 6px 20px;
+}

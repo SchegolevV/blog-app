@@ -4,24 +4,24 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/useAuth'
 import { registerUser } from '../../helpers/registerUser'
-import { ISignUp } from '../../Types/types'
-import { regEmailOptions, regPasswordOptions, regUsernameOptions } from '../../assets/variables'
+import { IFormNames } from '../../Types/formTypes'
+import { regCheckboxOptions, regEmailOptions, regPasswordOptions, regUsernameOptions } from '../../assets/variables'
+import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
 
 import classes from './forms.module.scss'
-import FormInput from './FormInput'
 
 const SignUpForm: FC = () => {
-  const methods = useForm<ISignUp>()
+  const methods = useForm<IFormNames>()
 
   const { handleSubmit, register, formState, watch, setError } = methods
 
   const navigate = useNavigate()
   const { signIn } = useAuth()
 
-  const onSubmit: SubmitHandler<ISignUp> = async (data) => {
+  const onSubmit: SubmitHandler<IFormNames> = async (data) => {
     const response = await registerUser(data)
     if (response?.errors) {
-      let key: keyof ISignUp
+      let key: keyof IFormNames
       for (key in response.errors) {
         setError(key, { message: `${key} is already used` })
       }
@@ -65,10 +65,16 @@ const SignUpForm: FC = () => {
       </FormInput>
 
       <div className={classes.divider} />
-      <label className={classes.policy}>
-        <input type="checkbox" required />
-        <span>I agree to the processing of my personal information</span>
-      </label>
+      <FormInput
+        className={classes.policy}
+        name="checkbox"
+        type="checkbox"
+        formState={formState}
+        register={register}
+        registerOptions={regCheckboxOptions}
+      >
+        I agree to the processing of my personal information
+      </FormInput>
       <button type="submit" className={classes.submit}>
         Create
       </button>

@@ -1,28 +1,44 @@
-@import '../../assets/styles/variables.scss';
+@import './Button.variables.scss';
 
-// .button {
-//     width: 6.8125rem;
-//     height: 3.1875rem;
-// }
-
-.signIn, .signUp, .logOut {
+.button {
     @include buttonAuth;
 }
-.signIn:hover, .signIn:focus {
-    color: $ui-color;
-    border-color: $ui-color;
-}
-.signIn:focus {
-    outline: 2px solid rgba($color: $ui-color, $alpha: 0.7);
-}
-.signUp:focus {
-    outline: 2px solid rgba($color: $success-color, $alpha: 0.7);
-}
+.button:hover, .button:focus {
+    transform: scale(1.05);
+} 
 
+.signIn {
+    @include signIn
+}
 .signUp {
-    color: $success-color;
-    border-color: $success-color;
+    @include signUp
 }
 .logOut {
-
+    @include logOut
 }
+.createArticle {
+    @include createArticle
+}
+.signIn:hover, .signIn:focus {
+    color: white;
+    border-color: $ui-color;
+    background-color: $ui-color;
+    outline: 1px solid rgba($color: $ui-color, $alpha: 0.7);
+}
+.signUp:hover, .signUp:focus {
+    color: white;
+    border-color: $success-color;
+    background-color: $success-color;
+    outline: 1px solid rgba($color: $success-color, $alpha: 0.7);
+}
+.logOut:hover, .logOut:focus {
+    outline: 1px solid rgba($color: black, $alpha: 0.7);
+}
+.createArticle:hover, .createArticle:focus {
+    color: white;
+    border-color: $success-color;
+    background-color: $success-color;
+    outline: 1px solid rgba($color: $success-color, $alpha: 0.7);
+}
+
+

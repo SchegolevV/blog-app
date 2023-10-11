@@ -3,21 +3,24 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import { AuthProvider } from './hoc/AuthProvider'
-import articleLoader from './Loaders/articleLoader'
-import HomePage from './components/HomePage/HomePage'
+import { articleLoader } from './Loaders/loaders'
+import Layout from './components/Layout/Layout'
 import GlobalError from './components/Errors/GlobalError'
 import ArticlesList from './components/ArticlesList/ArticlesList'
 import Article from './components/Article/Article'
-import SignUpForm from './components/Forms/SignUpForm'
+import SignUpForm from './components/UserForms/SignUpForm'
+import SignInForm from './components/UserForms/SignInForm'
+import EditForm from './components/UserForms/EditForm'
+import ArticleForm from './components/UserForms/ArticleForm'
+
 import './assets/styles/main.css'
-import SignInForm from './components/Forms/SignInForm'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
       <AuthProvider>
-        <HomePage />
+        <Layout />
       </AuthProvider>
     ),
     errorElement: <GlobalError />,
@@ -25,6 +28,15 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <ArticlesList />,
+      },
+      {
+        path: 'articles',
+        element: <ArticlesList />,
+      },
+      {
+        path: 'articles/:slug',
+        element: <Article />,
+        loader: articleLoader,
       },
       {
         path: 'sign-in',
@@ -35,13 +47,12 @@ const router = createBrowserRouter([
         element: <SignUpForm />,
       },
       {
-        path: 'articles',
-        element: <ArticlesList />,
+        path: 'profile',
+        element: <EditForm />,
       },
       {
-        path: 'articles/:slug',
-        element: <Article />,
-        loader: articleLoader,
+        path: 'new-article',
+        element: <ArticleForm />,
       },
     ],
   },

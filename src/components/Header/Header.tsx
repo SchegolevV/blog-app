@@ -1,7 +1,8 @@
 import { FC } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Button from '../../sideComponents/Button/Button'
+import Profile from '../Profile/Profile'
 import { useAuth } from '../../hooks/useAuth'
 
 import classes from './Header.module.scss'
@@ -11,12 +12,10 @@ interface HeaderProps {}
 const Header: FC<HeaderProps> = () => {
   const { user, signOut } = useAuth()
 
-  const navigate = useNavigate()
-
   const logOut = () => {
     if (signOut) {
       localStorage.clear()
-      signOut(() => navigate('../articles'))
+      signOut()
     }
   }
   return (
@@ -27,18 +26,27 @@ const Header: FC<HeaderProps> = () => {
       <div className={classes['actions-wrapper']}>
         {!user && (
           <>
-            <Button type="signIn" onClick={() => navigate('sign-in')} />
-            <Button type="signUp" onClick={() => navigate('sign-up')} />
+            <Button className="signIn" linkTo="./sign-in" replace>
+              Sign In
+            </Button>
+            <Button className="signUp" linkTo="./sign-up" replace>
+              Sign Up
+            </Button>
           </>
         )}
         {user && (
           <>
-            <Button type="logOut" onClick={() => logOut()} />
+            <Button linkTo="./new-article" className="createArticle">
+              Create article
+            </Button>
+            <Profile user={user} linkTo="./profile" />
+            <Button className="logOut" linkTo="./articles" onClick={() => logOut()}>
+              Log Out
+            </Button>
           </>
         )}
       </div>
     </header>
   )
 }
-
 export default Header

@@ -5,16 +5,21 @@
     width: min-content;
 }
 
-.like-button {
-    width: 1.3rem;
-    height: 1.3rem;
-    border: none;
-    background: rgba($color: #000000, $alpha: 0) url(./like.svg) center no-repeat;
-    background-size: contain;
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+    .like-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 1.3rem;
+        height: 1.3rem;
+        border: none;
+        background: rgba($color: #000000, $alpha: 0) url(./like.svg) center no-repeat;
+        background-size: contain;
+    }
+    .like-button:disabled {
+        background: rgba($color: #000000, $alpha: 0) url(./like-disable.svg) center no-repeat;
+    }
+    .like-button:checked {
+        background: rgba($color: #000000, $alpha: 0) url(./like-fill.svg) center no-repeat;
+    }
 }
-.like-button:disabled {
-    background: rgba($color: #000000, $alpha: 0) url(./like-disable.svg) center no-repeat;
-}
-.active {
-    background: rgba($color: #000000, $alpha: 0) url(./like-fill.svg) center no-repeat;
-}
+
