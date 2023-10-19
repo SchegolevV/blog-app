@@ -1,4 +1,4 @@
-import { addArticle } from '../API/API'
+import { editArticle } from '../API/API'
 
 import { getStorageItem } from './getStorageItem'
 
@@ -9,7 +9,7 @@ type TRequestedData = {
   tagList: { name: string }[]
 }
 
-export const addNewArticle = async (data: TRequestedData) => {
+const _editArticle = async (data: TRequestedData, slug: string) => {
   const { tagList } = data
   const requestedTags = tagList.filter((tag) => tag.name).map((tag) => tag.name)
 
@@ -17,6 +17,7 @@ export const addNewArticle = async (data: TRequestedData) => {
     article: { ...data, tagList: requestedTags },
   }
 
-  const body = await addArticle(requestBody, getStorageItem('currentUser').token)
-  return body
+  editArticle(requestBody, getStorageItem('currentUser').token, slug)
 }
+
+export default _editArticle

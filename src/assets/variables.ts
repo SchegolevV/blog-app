@@ -87,10 +87,6 @@ export const regTextOptions: RegisterOptions = {
 }
 
 export const regTagOptions: RegisterOptions = {
-  required: {
-    value: true,
-    message: 'Empty Tag not provided',
-  },
   maxLength: {
     value: 15,
     message: 'Tag must be under 15 symbols',

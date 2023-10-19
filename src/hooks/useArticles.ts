@@ -3,17 +3,20 @@ import { useEffect, useState } from 'react'
 import { IArticlesData } from '../Types/formTypes'
 import { getArticles } from '../API/API'
 
-const usePagination = () => {
+const useArticlesLoading = () => {
+  const [loading, setLoading] = useState(false)
   const [page, setPage] = useState(1)
   const [articles, setArticles] = useState<IArticlesData>()
 
   useEffect(() => {
+    setLoading(true)
     getArticles(page).then((data) => {
       setArticles(data)
+      setLoading(false)
     })
-  }, [page])
+  }, [page, setLoading])
 
-  return { page, setPage, articles }
+  return { page, setPage, articles, loading }
 }
 
-export default usePagination
+export default useArticlesLoading

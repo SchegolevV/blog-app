@@ -12,7 +12,7 @@ $secondary-fz: 0.75rem;
 
 //colors
 $bcg-color: #EBEEF3;
-$secondary-color: rgba(0, 0, 0, 0.50);
+$secondary-color: rgba(0, 0, 0, 0.648);
 $success-color: #52C41A ;
 $error-color: #F5222D;
 $ui-color: #1890FF;
@@ -36,3 +36,4 @@ $ui-color: #1890FF;
     background-color: white;
     @include box-borders;
 }
+

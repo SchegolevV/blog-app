@@ -10,7 +10,7 @@ const Tags: FC<TagsProps> = ({ tagList }) => {
   const createTags = () => {
     return tagList?.map((el, idx) =>
       idx < 3 ? (
-        <div key={el} className={classes.tag}>
+        <div key={idx} className={classes.tag}>
           {el}
         </div>
       ) : null

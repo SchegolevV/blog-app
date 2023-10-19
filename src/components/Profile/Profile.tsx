@@ -8,6 +8,7 @@ import classes from './Profile.module.scss'
 
 interface IProfileProps extends IResponseUser {
   linkTo: string
+  user: { username: string }
 }
 
 const Profile: FC<IProfileProps> = ({ user, linkTo }) => {

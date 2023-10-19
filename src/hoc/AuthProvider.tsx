@@ -1,12 +1,15 @@
 import { FC, ReactNode, createContext, useState } from 'react'
 
-import { IResponseUser } from '../Types/formTypes'
-
 interface AuthProviderProps {
   children: ReactNode
 }
 
-type TUser = IResponseUser['user']
+type TUser = {
+  email: string
+  username: string
+  password: string
+  image?: string
+}
 
 type TSignIn = (user: TUser, cb?: () => void) => void
 

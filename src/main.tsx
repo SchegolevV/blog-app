@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import { AuthProvider } from './hoc/AuthProvider'
+import AuthRequired from './hoc/AuthRequired'
 import { articleLoader } from './Loaders/loaders'
 import Layout from './components/Layout/Layout'
 import GlobalError from './components/Errors/GlobalError'
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
         loader: articleLoader,
       },
       {
+        path: 'articles/:slug/:edit',
+        element: <ArticleForm />,
+        loader: articleLoader,
+      },
+      {
         path: 'sign-in',
         element: <SignInForm />,
       },
@@ -52,7 +58,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'new-article',
-        element: <ArticleForm />,
+        element: (
+          <AuthRequired>
+            <ArticleForm />
+          </AuthRequired>
+        ),
+        loader: articleLoader,
       },
     ],
   },

@@ -3,6 +3,7 @@ import { useFieldArray, Control } from 'react-hook-form'
 
 import { IFormNames, IHookFormInputProps } from '../../../Types/formTypes'
 import classes from '../Inputs.module.scss'
+import Button from '../../Button/Button'
 
 interface TagCreatorProps extends Omit<IHookFormInputProps<IFormNames>, 'name'> {
   control: Control<IFormNames>
@@ -35,22 +36,18 @@ const TagCreator: FC<TagCreatorProps> = ({ control, register, registerOptions, f
                 />
 
                 {index > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => remove(index)}
-                    className={`${classes.btn} ${classes.btn_delete}`}
-                  >
+                  <Button onClick={() => remove(index)} style="warning">
                     Delete
-                  </button>
+                  </Button>
                 )}
               </li>
             )
           })}
         </div>
 
-        <button type="button" onClick={() => append({ name: '' })} className={`${classes.btn} ${classes.btn_add}`}>
+        <Button onClick={() => append({ name: '' })} style="ui">
           Add tag
-        </button>
+        </Button>
       </ul>
     </div>
   )

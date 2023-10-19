@@ -1,17 +1,18 @@
-import axios from 'axios'
-// import { LoaderFunction } from 'react-router-dom'
+import get from 'ky'
 
-export const articleLoader: LoaderFunction = async ({ params }) => {
-  const { data } = await axios.get(`https://blog.kata.academy/api/articles/${params.slug}`)
-  console.log(data)
-  return data.article
+export const articleLoader = async ({ params }) => {
+  if (params.slug) {
+    const data = await get(`https://blog.kata.academy/api/articles/${params.slug}`).json()
+    return data.article
+  } else {
+    return { title: '', tagList: [''] }
+  }
 }
 
-export const articlesLoader: LoaderFunction = async ({ params }) => {
+export const articlesLoader = async ({ params }) => {
   const page = Number(params.page) || 1
   const address = `https://blog.kata.academy/api/articles?limit=5&offset=${page * 5 - 5}`
 
-  const { data } = await axios.get(address)
-  console.log(data)
+  const data = await get(address).json()
   return data
 }

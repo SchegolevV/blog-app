@@ -1,7 +1,13 @@
 @import '../../assets/styles/variables.scss';
 
+.flex_aligner {
+    display: flex;
+    align-items: center;
+}
+
 .article { 
     box-sizing: border-box;
+    position: relative;
     width: 58.625rem;
     height: min-content;
     padding: 1rem;
@@ -32,19 +38,28 @@
     border-radius: 50%;
 }
 .slug {
+    display: inline-block;
+    margin: 0;
     @include standardFont;
     font-size: 1.25rem;
     color: $ui-color;
     text-decoration: none;
 }
+.title_slug {
+    color: black;
+}
+.description_wrapper {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
 .description {
     @include standardFont;
+    color: $secondary-color;
+    margin: 0;
     font-size: $secondary-fz;
     line-height: 1.375rem;
-}
-
-.body {
-    min-height: 20rem;
 }
 
 .like-btn {
@@ -53,3 +68,4 @@
     margin-left: 0.6rem;
     vertical-align: middle;
 }
+

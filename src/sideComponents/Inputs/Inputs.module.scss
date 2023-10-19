@@ -18,6 +18,7 @@
 .tag_input_wrapper {
     display: flex;
     gap: 5px;
+    margin-top: 5px;
 }
 .input_label {
     font-size: 0.875rem;
@@ -51,6 +52,7 @@
 
 .tag_list {
     list-style: none;
+    margin: 0;
     padding: 0;
     display: flex;
     align-items: flex-end;

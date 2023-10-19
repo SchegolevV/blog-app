@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useCallback } from 'react'
 // import debounce from 'lodash.debounce'
 
 import favoriteArticle from '../../helpers/favoriteArticle'
@@ -10,30 +10,33 @@ interface LikeProps {
   className?: string
   favorited?: boolean
   currentLikes?: number
-  disabled: boolean | undefined
+  disabled?: boolean
 }
 
-const Like: FC<LikeProps> = ({ currentLikes = 0, favorited = true, className, disabled, slug }) => {
+const Like: FC<LikeProps> = ({ currentLikes = 0, favorited, className, disabled, slug = '' }) => {
   const [liked, setLiked] = useState(favorited)
   const [likes, setLikes] = useState(currentLikes)
 
-  useEffect(() => {
-    liked ? setLikes((state) => state + 1) : setLikes(currentLikes)
-  }, [liked, currentLikes])
+  const addFavorite = useCallback(() => {
+    favoriteArticle(slug, 'POST')
+    console.log('renderr')
+  }, [slug])
+  const removeFavorite = useCallback(() => favoriteArticle(slug, 'DELETE'), [slug])
 
-  const groupClass = className ? `${classes['like-group']} ${className}` : ` ${classes['like-group']}`
-
-  const handleChange = () => {
-    if (slug) {
-      liked ? favoriteArticle(slug, 'DELETE') : favoriteArticle(slug, 'POST')
-      setLiked((state) => !state)
+  const handleChange = useCallback(() => {
+    setLiked((state) => !state)
+    if (liked) {
+      setLikes((state) => state - 1)
+      removeFavorite()
     } else {
-      console.error('some of params not found in changeHandler')
+      setLikes((state) => state + 1)
+      addFavorite()
     }
-  }
+    console.log(liked, likes)
+  }, [liked, addFavorite, removeFavorite, likes])
 
   return (
-    <label className={groupClass}>
+    <label className={`${classes['like-group']} ${className}`}>
       <input
         type="checkbox"
         className={classes['like-button']}

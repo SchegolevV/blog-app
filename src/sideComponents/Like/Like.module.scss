@@ -9,17 +9,21 @@
     .like-button {
         -webkit-appearance: none;
         -moz-appearance: none;
-        width: 1.3rem;
-        height: 1.3rem;
+        width: 1.2rem;
+        height: 1.2rem;
         border: none;
         background: rgba($color: #000000, $alpha: 0) url(./like.svg) center no-repeat;
         background-size: contain;
+        transition: .05s ease-out;
     }
     .like-button:disabled {
         background: rgba($color: #000000, $alpha: 0) url(./like-disable.svg) center no-repeat;
     }
     .like-button:checked {
         background: rgba($color: #000000, $alpha: 0) url(./like-fill.svg) center no-repeat;
+    }
+    .like-button:hover, .like-button:focus { 
+        transform: scale(1.1);
     }
 }
 

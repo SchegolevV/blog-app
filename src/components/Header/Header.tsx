@@ -20,27 +20,28 @@ const Header: FC<HeaderProps> = () => {
   }
   return (
     <header className={classes.header}>
+      <h1 hidden>RealWorld Blog</h1>
       <Link to={'/'} className={classes.link}>
         RealWorld Blog
       </Link>
       <div className={classes['actions-wrapper']}>
         {!user && (
           <>
-            <Button className="signIn" linkTo="./sign-in" replace>
+            <Button style="ui" linkTo="./sign-in" replace>
               Sign In
             </Button>
-            <Button className="signUp" linkTo="./sign-up" replace>
+            <Button style="success" linkTo="./sign-up" replace>
               Sign Up
             </Button>
           </>
         )}
         {user && (
           <>
-            <Button linkTo="./new-article" className="createArticle">
+            <Button linkTo="./new-article" style="creative">
               Create article
             </Button>
             <Profile user={user} linkTo="./profile" />
-            <Button className="logOut" linkTo="./articles" onClick={() => logOut()}>
+            <Button linkTo="./articles" onClick={() => logOut()}>
               Log Out
             </Button>
           </>

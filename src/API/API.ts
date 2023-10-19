@@ -1,15 +1,23 @@
-import axios from 'axios' // переписать с axios на ky
+import ky from 'ky'
 
 import { IArticle } from '../Types/formTypes'
 
-import { TRegisterNewUserFunc, TGetArticlesFunc, TLoginUserFunc, TEditUserFunc, TAddArticleFunc } from './APItypes'
+import {
+  TEditUserFunc,
+  TGetArticlesFunc,
+  TLoginUserFunc,
+  TRegisterNewUserFunc,
+  TAddArticleFunc,
+  TDeleteArticleFunc,
+  TEditArticleFunc,
+} from './APItypes'
 
 export const getArticles: TGetArticlesFunc = async (page) => {
   try {
     const address = `https://blog.kata.academy/api/articles?limit=5&offset=${page * 5 - 5}`
-    const { data } = await axios.get(address)
+    const res = await ky.get(address)
 
-    return data
+    return res.json()
   } catch (err) {
     console.error(err)
   }
@@ -17,20 +25,7 @@ export const getArticles: TGetArticlesFunc = async (page) => {
 
 export const registerNewUser: TRegisterNewUserFunc = async (userData) => {
   try {
-    const response = await fetch('https://blog.kata.academy/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    })
-
-    if (response.status > 500) {
-      throw new Error(`Failed with ${response.status}: ${response.body}`)
-    }
-
-    const body = await response.json()
-    return body
+    await ky.post('https://blog.kata.academy/api/users', { json: userData })
   } catch (err) {
     console.error(err)
   }
@@ -38,20 +33,9 @@ export const registerNewUser: TRegisterNewUserFunc = async (userData) => {
 
 export const loginUser: TLoginUserFunc = async (userData) => {
   try {
-    const response = await fetch('https://blog.kata.academy/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    })
+    const res = await ky.post('https://blog.kata.academy/api/users/login', { json: userData })
 
-    if (response.status > 500) {
-      throw new Error(`Failed with ${response.status}: ${response.body}`)
-    }
-
-    const body = await response.json()
-    return body
+    return res.json()
   } catch (err) {
     console.error(err)
   }
@@ -59,21 +43,14 @@ export const loginUser: TLoginUserFunc = async (userData) => {
 
 export const editCurrentUser: TEditUserFunc = async (userData, token) => {
   try {
-    const response = await fetch('https://blog.kata.academy/api/user', {
-      method: 'PUT',
+    const res = await ky.put('https://blog.kata.academy/api/user', {
+      json: userData,
       headers: {
         Authorization: `Token ${token}`,
-        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(userData),
     })
-    console.log(token)
-    if (response.status > 500) {
-      throw new Error(`Failed with ${response.status}: ${response.body}`)
-    }
 
-    const body = await response.json()
-    return body
+    return res.json()
   } catch (err) {
     console.error(err)
   }
@@ -102,21 +79,42 @@ export const favoriteArticle = async (slug: string, token: string, method: strin
 
 export const addArticle: TAddArticleFunc = async (request, token) => {
   try {
-    const res = await fetch('https://blog.kata.academy/api/articles', {
-      method: 'POST',
+    const res = await ky.post('https://blog.kata.academy/api/articles', {
+      json: request,
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Token ${token}`,
       },
-      body: JSON.stringify(request),
     })
 
-    if (!res.ok) {
-      throw new Error(`Failed with ${res.status}: ${res.statusText}`)
-    }
+    return res.json()
+  } catch (err) {
+    console.error(err)
+  }
+}
 
-    const body = await res.json()
-    return body
+export const deleteArticle: TDeleteArticleFunc = (token, slug) => {
+  try {
+    ky.delete(`https://blog.kata.academy/api/articles/${slug}`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const editArticle: TEditArticleFunc = (request, token, slug) => {
+  if (!slug) {
+    throw new Error('Slug of article is lost, but required for delete')
+  }
+  try {
+    ky.put(`https://blog.kata.academy/api/articles/${slug}`, {
+      json: request,
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
   } catch (err) {
     console.error(err)
   }
