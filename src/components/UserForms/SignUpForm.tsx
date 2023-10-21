@@ -3,10 +3,11 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/useAuth'
-import { registerUser } from '../../helpers/registerUser'
 import { IFormNames } from '../../Types/formTypes'
+import { setLocalUser } from '../../helpers/setLocalUser'
 import { regCheckboxOptions, regEmailOptions, regPasswordOptions, regUsernameOptions } from '../../assets/variables'
 import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
+import { registerNewUser } from '../../API/API'
 
 import classes from './forms.module.scss'
 
@@ -19,14 +20,16 @@ const SignUpForm: FC = () => {
   const { signIn } = useAuth()
 
   const onSubmit: SubmitHandler<IFormNames> = async (data) => {
-    const response = await registerUser(data)
+    const response = await registerNewUser({ user: { ...data } })
+    console.log(response)
     if (response?.errors) {
+      console.log('errors')
       let key: keyof IFormNames
       for (key in response.errors) {
         setError(key, { message: `${key} is already used` })
       }
     } else if (response && signIn) {
-      localStorage.setItem('currentUser', JSON.stringify(response.user))
+      setLocalUser(response.user)
       signIn(response.user, () => navigate('../articles'))
     }
   }

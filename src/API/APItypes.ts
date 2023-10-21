@@ -1,7 +1,14 @@
 import { IArticle, IArticlesData } from '../Types/formTypes'
-import { ILoginData } from '../helpers/logInUser'
+// import { ILoginData } from '../helpers/logInUser'
 
 type TFetchedData<T, P> = (data: T) => Promise<P | undefined>
+
+type TLoginData = {
+  user: {
+    email: string
+    password: string
+  }
+}
 
 export type TRequestedUser = {
   user: {
@@ -15,8 +22,8 @@ export type TRequestedUser = {
 export type TResponseUser = {
   user: {
     email: string
-    token?: string
-    username?: string
+    token: string
+    username: string
     password?: string
   }
   errors?: {
@@ -34,11 +41,11 @@ export type TRequestArticle = {
   }
 }
 
-export type TRegisterNewUserFunc = (user: Omit<TRequestedUser, 'image'>) => void
+export type TRegisterNewUserFunc = (user: Omit<TRequestedUser, 'image'>) => Promise<TResponseUser | undefined>
 
 export type TGetArticlesFunc = TFetchedData<number, IArticlesData>
 
-export type TLoginUserFunc = TFetchedData<ILoginData, TResponseUser>
+export type TLoginUserFunc = TFetchedData<TLoginData, TResponseUser>
 
 export type TEditUserFunc = (user: TRequestedUser, token: string) => Promise<TResponseUser | undefined>
 

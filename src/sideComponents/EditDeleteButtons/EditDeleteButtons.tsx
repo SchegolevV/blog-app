@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../Button/Button'
 import './EditDeleteButtons.scss'
 import { deleteArticle } from '../../API/API'
-import { getStorageItem } from '../../helpers/getStorageItem'
+import { getLocalUser } from '../../helpers/getLocalUser'
 
 interface EditDeleteButtonsProps {}
 
@@ -13,7 +13,7 @@ const EditDeleteButtons: FC<EditDeleteButtonsProps> = () => {
   const navigate = useNavigate()
 
   const { slug } = useParams()
-  const token = getStorageItem('currentUser').token
+  const token = getLocalUser().token
 
   const confirm = () => {
     if (slug) {

@@ -5,8 +5,8 @@ import { Link, Form, useNavigate } from 'react-router-dom'
 import { IFormNames } from '../../Types/formTypes'
 import { regEmailOptions, regPasswordOptions } from '../../assets/variables'
 import { useAuth } from '../../hooks/useAuth'
-import { logInUser } from '../../helpers/logInUser'
 import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
+import { loginUser } from '../../API/API'
 
 import classes from './forms.module.scss'
 
@@ -16,7 +16,7 @@ const SignInForm: FC = () => {
   const { handleSubmit, register, formState, setError } = useForm<IFormNames>()
 
   const onSubmit: SubmitHandler<IFormNames> = async (data) => {
-    const response = await logInUser(data)
+    const response = await loginUser({ user: { ...data } })
     if (response?.errors) {
       setError('email', { message: `Email or password is invalid` })
     } else if (response && signIn) {

@@ -1,12 +1,11 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
-import { IResponseUser } from '../../Types/formTypes'
-import { getStorageItem } from '../../helpers/getStorageItem'
+import { getLocalUser } from '../../helpers/getLocalUser'
 
 import classes from './Profile.module.scss'
 
-interface IProfileProps extends IResponseUser {
+interface IProfileProps {
   linkTo: string
   user: { username: string }
 }
@@ -14,7 +13,7 @@ interface IProfileProps extends IResponseUser {
 const Profile: FC<IProfileProps> = ({ user, linkTo }) => {
   const defaultImg = 'src/assets/images/defaultUserAvatar.svg'
   const { username } = user
-  const localImg = getStorageItem('currentUser').image
+  const localImg = getLocalUser().image
   return (
     <>
       <label>

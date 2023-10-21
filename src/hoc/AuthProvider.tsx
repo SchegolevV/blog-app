@@ -1,5 +1,7 @@
 import { FC, ReactNode, createContext, useState } from 'react'
 
+import { getLocalUser } from '../helpers/getLocalUser'
+
 interface AuthProviderProps {
   children: ReactNode
 }
@@ -7,7 +9,7 @@ interface AuthProviderProps {
 type TUser = {
   email: string
   username: string
-  password: string
+  token: string
   image?: string
 }
 
@@ -24,9 +26,9 @@ type valueType = {
 export const AuthContext = createContext<valueType | null>(null)
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
-  const currentUser = localStorage.getItem('currentUser') || JSON.stringify('')
+  const currentUser = getLocalUser()
 
-  const [user, setUser] = useState<TUser | null>(JSON.parse(currentUser))
+  const [user, setUser] = useState<TUser | null>(currentUser)
 
   const signIn: TSignIn = (user, cb) => {
     setUser(user)

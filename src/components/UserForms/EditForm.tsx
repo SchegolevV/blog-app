@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { IFormNames } from '../../Types/formTypes'
 import { regEmailOptions, regPasswordOptions, regUrlOptions, regUsernameOptions } from '../../assets/variables'
 import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
-import { getStorageItem } from '../../helpers/getStorageItem'
+import { getLocalUser } from '../../helpers/getLocalUser'
 import { editUser } from '../../helpers/editUser'
 
 import classes from './forms.module.scss'
@@ -14,9 +14,9 @@ import classes from './forms.module.scss'
 const EditForm: FC = () => {
   const methods = useForm<IFormNames>({
     defaultValues: {
-      username: getStorageItem('currentUser').username,
-      email: getStorageItem('currentUser').email,
-      image: getStorageItem('currentUser').image,
+      username: getLocalUser().username,
+      email: getLocalUser().email,
+      image: getLocalUser().image,
     },
   })
   const { handleSubmit, register, formState, setError } = methods
@@ -26,8 +26,10 @@ const EditForm: FC = () => {
 
   const onSubmit: SubmitHandler<IFormNames> = async (data) => {
     const response = await editUser(data)
+
     if (response?.errors) {
-      for (const key in response.errors) {
+      let key: 'email' | 'username'
+      for (key in response.errors) {
         setError(key, { message: `${key} ${response.errors[key]}` })
       }
     } else if (response && update) {

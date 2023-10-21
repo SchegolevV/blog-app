@@ -25,7 +25,15 @@ export const getArticles: TGetArticlesFunc = async (page) => {
 
 export const registerNewUser: TRegisterNewUserFunc = async (userData) => {
   try {
-    await ky.post('https://blog.kata.academy/api/users', { json: userData })
+    const res = await fetch('https://blog.kata.academy/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+    const body = await res.json()
+    return body
   } catch (err) {
     console.error(err)
   }
@@ -43,14 +51,17 @@ export const loginUser: TLoginUserFunc = async (userData) => {
 
 export const editCurrentUser: TEditUserFunc = async (userData, token) => {
   try {
-    const res = await ky.put('https://blog.kata.academy/api/user', {
-      json: userData,
+    const res = await fetch('https://blog.kata.academy/api/user', {
+      method: 'PUT',
       headers: {
         Authorization: `Token ${token}`,
       },
+      body: JSON.stringify(userData),
     })
 
-    return res.json()
+    const body = await res.json()
+    console.log(body)
+    return body
   } catch (err) {
     console.error(err)
   }

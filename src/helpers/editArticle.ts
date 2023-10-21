@@ -1,6 +1,6 @@
 import { editArticle } from '../API/API'
 
-import { getStorageItem } from './getStorageItem'
+import { getLocalUser } from './getLocalUser'
 
 type TRequestedData = {
   body: string
@@ -17,7 +17,7 @@ const _editArticle = async (data: TRequestedData, slug: string) => {
     article: { ...data, tagList: requestedTags },
   }
 
-  editArticle(requestBody, getStorageItem('currentUser').token, slug)
+  editArticle(requestBody, getLocalUser().token, slug)
 }
 
 export default _editArticle
