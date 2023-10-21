@@ -4,7 +4,7 @@ import { useNavigate, Form } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/useAuth'
 import { IFormNames } from '../../Types/formTypes'
-import { regEmailOptions, regPasswordOptions, regUrlOptions, regUsernameOptions } from '../../assets/variables'
+import { regEmailOptions, regPasswordOptions, regUrlOptions, regUsernameOptions } from '../../variables'
 import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
 import { getLocalUser } from '../../helpers/getLocalUser'
 import { editUser } from '../../helpers/editUser'

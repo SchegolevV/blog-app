@@ -4,7 +4,7 @@ import { useLoaderData, useNavigate, useParams } from 'react-router-dom'
 
 import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
 import { IArticle, IFormNames } from '../../Types/formTypes'
-import { regTagOptions, regTextOptions, regTitleOptions } from '../../assets/variables'
+import { regTagOptions, regTextOptions, regTitleOptions } from '../../variables'
 import TagCreator from '../../sideComponents/Inputs/TagInputs/TagInputs'
 import { addNewArticle } from '../../helpers/addNewArticle'
 import editArticle from '../../helpers/editArticle'

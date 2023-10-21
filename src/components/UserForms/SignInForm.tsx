@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { Link, Form, useNavigate } from 'react-router-dom'
 
 import { IFormNames } from '../../Types/formTypes'
-import { regEmailOptions, regPasswordOptions } from '../../assets/variables'
+import { regEmailOptions, regPasswordOptions } from '../../variables'
 import { useAuth } from '../../hooks/useAuth'
 import FormInput from '../../sideComponents/Inputs/FormInput/FormInput'
 import { loginUser } from '../../API/API'

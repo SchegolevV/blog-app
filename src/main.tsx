@@ -14,7 +14,7 @@ import SignInForm from './components/UserForms/SignInForm'
 import EditForm from './components/UserForms/EditForm'
 import ArticleForm from './components/UserForms/ArticleForm'
 
-import './assets/styles/main.css'
+import './styles/main.css'
 
 const router = createBrowserRouter([
   {

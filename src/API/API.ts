@@ -41,9 +41,13 @@ export const registerNewUser: TRegisterNewUserFunc = async (userData) => {
 
 export const loginUser: TLoginUserFunc = async (userData) => {
   try {
-    const res = await ky.post('https://blog.kata.academy/api/users/login', { json: userData })
+    const res = await fetch('https://blog.kata.academy/api/users/login', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+    })
 
-    return res.json()
+    const body = await res.json()
+    return body
   } catch (err) {
     console.error(err)
   }
