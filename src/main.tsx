@@ -31,33 +31,33 @@ const router = createBrowserRouter([
         element: <ArticlesList />,
       },
       {
-        path: 'articles',
+        path: '/articles',
         element: <ArticlesList />,
       },
       {
-        path: 'articles/:slug',
+        path: '/articles/:slug',
         element: <Article />,
         loader: articleLoader,
       },
       {
-        path: 'articles/:slug/:edit',
+        path: '/articles/:slug/:edit',
         element: <ArticleForm />,
         loader: articleLoader,
       },
       {
-        path: 'sign-in',
+        path: '/sign-in',
         element: <SignInForm />,
       },
       {
-        path: 'sign-up',
+        path: '/sign-up',
         element: <SignUpForm />,
       },
       {
-        path: 'profile',
+        path: '/profile',
         element: <EditForm />,
       },
       {
-        path: 'new-article',
+        path: '/new-article',
         element: (
           <AuthRequired>
             <ArticleForm />
