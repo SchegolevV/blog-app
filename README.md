@@ -1,1 +1,1 @@
-https://blog-gokv0kcq9-maracas20011-gmailcom.vercel.app/
+https://blog-68siy9v0h-maracas20011-gmailcom.vercel.app/
