@@ -2,8 +2,7 @@
 
 @font-face {
   font-family: 'Inter';
-  src: url('C:/Users/marac/OneDrive/Рабочий стол/React/blog-app/src/fonts/Inter-VariableFont_slnt,wght.ttf')
-    format('truetype');
+  src: url('../../src/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
 }
 html {
   font-size: 16px;
