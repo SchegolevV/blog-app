@@ -58,13 +58,13 @@ export const editCurrentUser: TEditUserFunc = async (userData, token) => {
     const res = await fetch('https://blog.kata.academy/api/user', {
       method: 'PUT',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Token ${token}`,
       },
       body: JSON.stringify(userData),
     })
 
     const body = await res.json()
-    console.log(body)
     return body
   } catch (err) {
     console.error(err)

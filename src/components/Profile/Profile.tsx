@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import { getLocalUser } from '../../helpers/getLocalUser'
+import defaultAvatar from '../../images/defaultUserAvatar.svg'
 
 import classes from './Profile.module.scss'
 
@@ -11,7 +12,6 @@ interface IProfileProps {
 }
 
 const Profile: FC<IProfileProps> = ({ user, linkTo }) => {
-  const defaultImg = 'src/assets/images/defaultUserAvatar.svg'
   const { username } = user
   const localImg = getLocalUser().image
   return (
@@ -20,7 +20,7 @@ const Profile: FC<IProfileProps> = ({ user, linkTo }) => {
         <Link to={`${linkTo}`} className={classes['profile-link']}>
           {username ? username : 'unknown'}
         </Link>
-        <img src={localImg || defaultImg} alt="avatar" className={classes['profile-image']} />
+        <img src={localImg || defaultAvatar} alt="avatar" className={classes['profile-image']} />
       </label>
     </>
   )
