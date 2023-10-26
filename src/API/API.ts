@@ -3,6 +3,7 @@ import ky from 'ky'
 import { IArticle } from '../Types/formTypes'
 
 import {
+  TGetUserFunc,
   TEditUserFunc,
   TGetArticlesFunc,
   TLoginUserFunc,
@@ -11,6 +12,26 @@ import {
   TDeleteArticleFunc,
   TEditArticleFunc,
 } from './APItypes'
+
+export const getUser: TGetUserFunc = async (token) => {
+  try {
+    const res = await fetch('https://blog.kata.academy/api/user', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
+      },
+    })
+
+    if (!res.ok) {
+      throw new Error(`${res.status}: ${res.statusText}`)
+    }
+
+    const body = await res.json()
+    return body.user
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 export const getArticles: TGetArticlesFunc = async (page) => {
   try {

@@ -1,9 +1,9 @@
 import { editCurrentUser } from '../API/API'
 import { IFormNames } from '../Types/formTypes'
 
-import { getLocalUser } from './getLocalUser'
+import { getToken } from './getToken'
 
 export const editUser = async (data: IFormNames) => {
-  const body = await editCurrentUser({ user: { ...data } }, getLocalUser().token)
+  const body = await editCurrentUser({ user: { ...data } }, getToken() as string)
   return body
 }

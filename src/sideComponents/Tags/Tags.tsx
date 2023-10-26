@@ -10,13 +10,13 @@ const Tags: FC<TagsProps> = ({ tagList }) => {
   const createTags = () => {
     return tagList?.map((el, idx) =>
       idx < 3 ? (
-        <div key={idx} className={classes.tag}>
+        <li key={idx} className={classes.tag}>
           {el}
-        </div>
+        </li>
       ) : null
     )
   }
-  return <div className={classes['tag-list']}>{createTags()}</div>
+  return <ul className={classes['tag-list']}>{createTags()}</ul>
 }
 
 export default Tags

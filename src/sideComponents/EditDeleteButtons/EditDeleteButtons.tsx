@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Button from '../Button/Button'
 import './EditDeleteButtons.scss'
 import { deleteArticle } from '../../API/API'
-import { getLocalUser } from '../../helpers/getLocalUser'
+import { getToken } from '../../helpers/getToken'
 
 interface EditDeleteButtonsProps {}
 
@@ -13,10 +13,10 @@ const EditDeleteButtons: FC<EditDeleteButtonsProps> = () => {
   const navigate = useNavigate()
 
   const { slug } = useParams()
-  const token = getLocalUser().token
+  const token = getToken()
 
   const confirm = () => {
-    if (slug) {
+    if (slug && token) {
       deleteArticle(token, slug)
     }
     navigate('/')

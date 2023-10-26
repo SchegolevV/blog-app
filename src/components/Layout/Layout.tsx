@@ -1,17 +1,33 @@
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import Header from '../Header/Header'
+import { TUser } from '../../hooks/useUser'
+import { getUser } from '../../API/API'
+import { useAuth } from '../../hooks/useAuth'
+
+type contextType = { user: TUser | null }
 
 const Layout: FC = () => {
+  const [user, setUser] = useState<TUser | null>(null)
+  const { token } = useAuth()
+  useEffect(() => {
+    if (token) {
+      getUser(token).then((user) => {
+        user ? setUser(user) : setUser(null)
+      })
+    } else {
+      setUser(null)
+    }
+  }, [token])
   return (
     <>
       <div className="content-wrapper">
-        <Header />
+        <Header user={user} />
       </div>
       <main>
         <div className="content-wrapper">
-          <Outlet />
+          <Outlet context={{ user } satisfies contextType} />
         </div>
       </main>
     </>

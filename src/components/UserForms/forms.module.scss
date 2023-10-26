@@ -39,6 +39,7 @@
 }
 .submit {
     display: flex;
+    border: 1px solid $ui-color;
     width: 19.9375rem;
     padding: 0.5rem 1rem;
     flex-direction: column;
@@ -48,6 +49,11 @@
     border-color: $ui-color;
     border-radius: 0.25rem;
     color: white;
+    transition: 0.1s;
+}
+.submit:disabled {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .out {

@@ -3,9 +3,11 @@
 .tag-list {
     display: flex;
     gap: 0.4rem;
+    padding: 0;
     margin-top: 0.38rem;
     width: 15rem;
     flex-wrap: wrap;
+    list-style: none;
 }
 
 .tag {

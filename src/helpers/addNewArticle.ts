@@ -1,6 +1,6 @@
 import { addArticle } from '../API/API'
 
-import { getLocalUser } from './getLocalUser'
+import { getToken } from './getToken'
 
 type TRequestedData = {
   body: string
@@ -17,6 +17,6 @@ export const addNewArticle = async (data: TRequestedData) => {
     article: { ...data, tagList: requestedTags },
   }
 
-  const body = await addArticle(requestBody, getLocalUser().token)
+  const body = await addArticle(requestBody, getToken() as string)
   return body
 }

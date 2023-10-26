@@ -8,13 +8,13 @@ interface AuthRequiredProps {
 }
 
 const AuthRequired: FC<AuthRequiredProps> = ({ children }) => {
-  const { user } = useAuth()
+  const { token } = useAuth()
 
-  if (!user) {
+  if (!token) {
     return <Navigate to={'/sign-in'} />
-  } else {
-    return children
   }
+
+  return children
 }
 
 export default AuthRequired

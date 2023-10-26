@@ -3,12 +3,13 @@ import { Link, useLoaderData, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 
 import { textTrim } from '../../helpers/textTrim'
-import { useAuth } from '../../hooks/useAuth'
+// import { useAuth } from '../../hooks/useAuth'
 import LikeButton from '../../sideComponents/Like/Like'
 import { IArticle } from '../../Types/formTypes'
 import Tags from '../../sideComponents/Tags/Tags'
 import formatDate from '../../helpers/formatDate'
 import EditDeleteButtons from '../../sideComponents/EditDeleteButtons/EditDeleteButtons'
+import { useUser } from '../../hooks/useUser'
 
 import classes from './Article.module.scss'
 
@@ -19,6 +20,8 @@ const Article: FC<ArticleProps> = ({ ...props }) => {
   const { slug, favorited, favoritesCount, author, createdAt, body } = articleData ? articleData : props
   let { title, description, tagList } = articleData ? articleData : props
 
+  const { user } = useUser()
+
   title = useMemo(() => textTrim(title, 60), [title])
   description = useMemo(() => textTrim(description, 60), [description])
   tagList = tagList?.map((tag) => {
@@ -27,8 +30,6 @@ const Article: FC<ArticleProps> = ({ ...props }) => {
 
   const params = useParams()
 
-  const { user } = useAuth()
-
   const isArticleOfUser = user?.username === author?.username && params.slug
 
   return (
@@ -36,11 +37,14 @@ const Article: FC<ArticleProps> = ({ ...props }) => {
       <div className={classes['article-header-wrapper']}>
         <div className={classes['article-info']}>
           <div className={classes.flex_aligner}>
-            {(params.slug && <h2 className={`${classes.slug} ${classes.title_slug}`}>{title}</h2>) || (
-              <Link to={`/articles/${slug}`} className={classes.slug}>
-                {title}
-              </Link>
-            )}
+            <h2 className={`${classes.slug} ${classes.title_slug}`}>
+              {(!params.slug && (
+                <Link to={`/articles/${slug}`} className={classes.slug}>
+                  {title}
+                </Link>
+              )) ||
+                title}
+            </h2>
             <LikeButton
               className={classes['like-btn']}
               slug={slug}

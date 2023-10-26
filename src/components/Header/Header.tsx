@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom'
 import Button from '../../sideComponents/Button/Button'
 import Profile from '../Profile/Profile'
 import { useAuth } from '../../hooks/useAuth'
+import { TUser } from '../../hooks/useUser'
 
 import classes from './Header.module.scss'
 
-interface HeaderProps {}
+interface HeaderProps {
+  user: TUser | null
+}
 
-const Header: FC<HeaderProps> = () => {
-  const { user, signOut } = useAuth()
+const Header: FC<HeaderProps> = ({ user }) => {
+  const { signOut } = useAuth()
 
   const logOut = () => {
-    if (signOut) {
-      localStorage.clear()
-      signOut()
-    }
+    localStorage.clear()
+    signOut()
   }
   return (
     <header className={classes.header}>

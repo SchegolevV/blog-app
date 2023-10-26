@@ -1,10 +1,8 @@
 import { favoriteArticle } from '../API/API'
 
-import { getLocalUser } from './getLocalUser'
+import { getToken } from './getToken'
 
 const _favoriteArticle = async (slug: string, method: 'POST' | 'DELETE') => {
-  const token = getLocalUser().token
-  const body = await favoriteArticle(slug, token, method)
-  return body
+  return await favoriteArticle(slug, getToken() as string, method)
 }
 export default _favoriteArticle

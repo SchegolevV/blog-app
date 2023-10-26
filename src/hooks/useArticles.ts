@@ -14,7 +14,7 @@ const useArticlesLoading = () => {
       setArticles(data)
       setLoading(false)
     })
-  }, [page, setLoading])
+  }, [page])
 
   return { page, setPage, articles, loading }
 }

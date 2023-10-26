@@ -7,6 +7,7 @@ export interface IFormInputProps extends IHookFormInputProps<IFormNames> {
   className?: string
   children: string
   textarea?: boolean
+  disabled?: boolean
 }
 
 const FormInput: FC<IFormInputProps> = ({
@@ -18,6 +19,7 @@ const FormInput: FC<IFormInputProps> = ({
   type,
   className,
   textarea,
+  disabled = false,
 }) => {
   const { errors } = formState
   const InvalidClass = formState.errors[name] ? classes.invalid : ''
@@ -46,6 +48,7 @@ const FormInput: FC<IFormInputProps> = ({
           className={`${classes.input} ${classes.form_input} ${InvalidClass}`}
           type={type}
           {...register(name, registerOptions)}
+          disabled={disabled}
         />
       )}
       {errors[name] && <p className={classes.error_message}>{errors[name]?.message}</p>}

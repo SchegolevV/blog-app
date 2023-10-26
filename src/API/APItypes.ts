@@ -1,5 +1,6 @@
 import { IArticle, IArticlesData } from '../Types/formTypes'
 // import { ILoginData } from '../helpers/logInUser'
+import { TUser } from '../hooks/useUser'
 
 type TFetchedData<T, P> = (data: T) => Promise<P | undefined>
 
@@ -40,6 +41,7 @@ export type TRequestArticle = {
     description: string
   }
 }
+export type TGetUserFunc = (token: string) => Promise<TUser | undefined>
 
 export type TRegisterNewUserFunc = (user: Omit<TRequestedUser, 'image'>) => Promise<TResponseUser | undefined>
 

@@ -1,12 +1,5 @@
 import { useContext } from 'react'
 
-import { AuthContext } from '../hoc/AuthProvider'
+import { AuthContext, valueType } from '../hoc/AuthProvider'
 
-export const useAuth = () => {
-  const value = useContext(AuthContext)
-  const user = value?.user
-  const signIn = value?.signIn
-  const signOut = value?.signOut
-
-  return { user, signIn, signOut }
-}
+export const useAuth = () => useContext(AuthContext) as valueType

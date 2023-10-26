@@ -19,9 +19,9 @@ const SignInForm: FC = () => {
     const response = await loginUser({ user: { ...data } })
     if (response?.errors) {
       setError('email', { message: `Email or password is invalid` })
-    } else if (response && signIn) {
-      localStorage.setItem('currentUser', JSON.stringify(response.user))
-      signIn(response.user, () => navigate('../articles', { replace: true }))
+    } else if (response) {
+      localStorage.setItem('token', JSON.stringify(response.user.token))
+      signIn(response.user.token, () => navigate('../articles', { replace: true }))
     }
   }
   return (
