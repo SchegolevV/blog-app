@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { Pagination } from 'antd'
 
-import { IArticle } from '../../Types/formTypes'
+import useArticles from '@/hooks/useArticles'
+import Spinner from '@/sideComponents/Spin/Spin'
+import { IArticle } from '@/Types/formTypes'
+
 import Article from '../Article/Article'
-import useArticles from '../../hooks/useArticles'
-import Spinner from '../../sideComponents/Spin/Spin'
 
 import classes from './ArticlesList.module.scss'
 

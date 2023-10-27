@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { IArticlesData } from '../Types/formTypes'
-import { getArticles } from '../API/API'
+import { IArticlesData } from '@/Types/formTypes'
+import { getArticles } from '@/API/API'
 
 const useArticlesLoading = () => {
   const [loading, setLoading] = useState(false)

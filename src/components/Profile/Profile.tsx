@@ -1,8 +1,9 @@
 import { FC, memo } from 'react'
 import { Link } from 'react-router-dom'
 
+import { TUser } from '@/hooks/useUser'
+
 import defaultAvatar from '../../images/defaultUserAvatar.svg'
-import { TUser } from '../../hooks/useUser'
 
 import classes from './Profile.module.scss'
 

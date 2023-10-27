@@ -1,10 +1,11 @@
 import { FC, useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
+import { getUser } from '@/API/API'
+import { useAuth } from '@/hooks/useAuth'
+import { TUser } from '@/hooks/useUser'
+
 import Header from '../Header/Header'
-import { TUser } from '../../hooks/useUser'
-import { getUser } from '../../API/API'
-import { useAuth } from '../../hooks/useAuth'
 
 type contextType = { user: TUser | null }
 

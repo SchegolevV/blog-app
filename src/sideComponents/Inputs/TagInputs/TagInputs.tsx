@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import { useFieldArray, Control } from 'react-hook-form'
 
-import { IFormNames, IHookFormInputProps } from '../../../Types/formTypes'
+import Button from '@sideComponents/Button/Button'
+import { IFormNames, IHookFormInputProps } from '@/Types/formTypes'
+
 import classes from '../Inputs.module.scss'
-import Button from '../../Button/Button'
 
 interface TagCreatorProps extends Omit<IHookFormInputProps<IFormNames>, 'name'> {
   control: Control<IFormNames>

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
-import { IHookFormInputProps, IFormNames } from '../../../Types/formTypes'
+import { IHookFormInputProps, IFormNames } from '@/Types/formTypes'
+
 import classes from '../Inputs.module.scss'
 
 export interface IFormInputProps extends IHookFormInputProps<IFormNames> {

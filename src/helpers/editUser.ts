@@ -1,5 +1,5 @@
-import { editCurrentUser } from '../API/API'
-import { IFormNames } from '../Types/formTypes'
+import { editCurrentUser } from '@/API/API'
+import { IFormNames } from '@/Types/formTypes'
 
 import { getToken } from './getToken'
 

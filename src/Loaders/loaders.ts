@@ -2,7 +2,7 @@ import get from 'ky'
 // eslint-disable-next-line import/named
 import { LoaderFunction } from 'react-router-dom'
 
-import { IArticle } from '../Types/formTypes'
+import { IArticle } from '@/Types/formTypes'
 
 type TData = {
   article: IArticle

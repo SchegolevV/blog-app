@@ -1,4 +1,4 @@
-import { favoriteArticle } from '../API/API'
+import { favoriteArticle } from '@/API/API'
 
 import { getToken } from './getToken'
 

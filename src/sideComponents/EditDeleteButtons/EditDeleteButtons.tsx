@@ -2,10 +2,11 @@ import { FC } from 'react'
 import { Popconfirm, message } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { deleteArticle } from '@/API/API'
+import { getToken } from '@/helpers/getToken'
+
 import Button from '../Button/Button'
 import './EditDeleteButtons.scss'
-import { deleteArticle } from '../../API/API'
-import { getToken } from '../../helpers/getToken'
 
 interface EditDeleteButtonsProps {}
 

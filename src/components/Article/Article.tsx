@@ -2,14 +2,14 @@ import { FC, useMemo } from 'react'
 import { Link, useLoaderData, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 
-import { textTrim } from '../../helpers/textTrim'
-// import { useAuth } from '../../hooks/useAuth'
-import LikeButton from '../../sideComponents/Like/Like'
+import { useUser } from '@hooks/useUser'
+import LikeButton from '@sideComponents/Like/Like'
+import Tags from '@sideComponents/Tags/Tags'
+import EditDeleteButtons from '@sideComponents/EditDeleteButtons/EditDeleteButtons'
+import formatDate from '@helpers/formatDate'
+import { textTrim } from '@helpers/textTrim'
+
 import { IArticle } from '../../Types/formTypes'
-import Tags from '../../sideComponents/Tags/Tags'
-import formatDate from '../../helpers/formatDate'
-import EditDeleteButtons from '../../sideComponents/EditDeleteButtons/EditDeleteButtons'
-import { useUser } from '../../hooks/useUser'
 
 import classes from './Article.module.scss'
 

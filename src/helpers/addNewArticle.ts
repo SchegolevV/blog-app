@@ -1,4 +1,4 @@
-import { addArticle } from '../API/API'
+import { addArticle } from '@/API/API'
 
 import { getToken } from './getToken'
 

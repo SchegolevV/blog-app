@@ -1,6 +1,6 @@
 import { FC, ReactNode, createContext, useState, useCallback } from 'react'
 
-import { getToken } from '../helpers/getToken'
+import { getToken } from '@/helpers/getToken'
 interface AuthProviderProps {
   children: ReactNode
 }

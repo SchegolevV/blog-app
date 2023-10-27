@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from '../../sideComponents/Button/Button'
+import { useAuth } from '@/hooks/useAuth'
+import { TUser } from '@/hooks/useUser'
+import Button from '@/sideComponents/Button/Button'
+
 import Profile from '../Profile/Profile'
-import { useAuth } from '../../hooks/useAuth'
-import { TUser } from '../../hooks/useUser'
 
 import classes from './Header.module.scss'
 

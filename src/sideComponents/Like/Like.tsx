@@ -1,7 +1,6 @@
 import { FC, useState, useCallback } from 'react'
-// import debounce from 'lodash.debounce'
 
-import favoriteArticle from '../../helpers/favoriteArticle'
+import favoriteArticle from '@/helpers/favoriteArticle'
 
 import classes from './Like.module.scss'
 
@@ -19,7 +18,6 @@ const Like: FC<LikeProps> = ({ currentLikes = 0, favorited, className, disabled,
 
   const addFavorite = useCallback(() => {
     favoriteArticle(slug, 'POST')
-    console.log('renderr')
   }, [slug])
   const removeFavorite = useCallback(() => favoriteArticle(slug, 'DELETE'), [slug])
 
@@ -32,8 +30,7 @@ const Like: FC<LikeProps> = ({ currentLikes = 0, favorited, className, disabled,
       setLikes((state) => state + 1)
       addFavorite()
     }
-    console.log(liked, likes)
-  }, [liked, addFavorite, removeFavorite, likes])
+  }, [liked, addFavorite, removeFavorite])
 
   return (
     <label className={`${classes['like-group']} ${className}`}>
